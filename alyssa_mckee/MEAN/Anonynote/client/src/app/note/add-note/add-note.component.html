@@ -1,0 +1,12 @@
+<form #form = 'ngForm' (submit)='onSubmit($event); form.resetForm()'>
+	<input type="text"
+		name="content"
+		placeholder="note contents"
+		required
+		minlength='3'
+		[(ngModel)]='note.content'
+		#content='ngModel'
+	/>
+	<button type="submit" [disabled]='! form.valid'>Create Note</button>
+	<small [hidden]='content.valid || content.pristine || content.untouched'>note content must be atleast 3 characters long</small>
+</form>

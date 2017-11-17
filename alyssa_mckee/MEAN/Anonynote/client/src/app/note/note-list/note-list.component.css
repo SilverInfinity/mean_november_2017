@@ -1,0 +1,16 @@
+.notes{
+
+}
+.note{
+	padding: 10px;
+	margin-top: 10px;
+	
+	border: 2px solid black;
+}
+.notecontent{
+	display: inline-block;
+}
+.timestamp{
+	display: inline-block;
+	float: right;
+}

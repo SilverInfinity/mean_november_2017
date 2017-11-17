@@ -1,0 +1,11 @@
+<div class="notes">
+	<div class="note" *ngFor='let note of notes; let idx = index'>
+		<div class="notecontent">
+			<p>{{notes[notes.length-1-idx].content}}</p>
+		</div>
+		<div class="timestamp">
+			<p>Noted on: {{notes[notes.length-1-idx].createdAt | date: 'medium' }}</p>
+		</div>
+	</div>
+	
+</div>
