@@ -80,7 +80,7 @@ export class UserService{
 		)
 	}
 	getThings(cb,eb){
-		this._http.get('/users/'+ this.currentUser.data._id+'things').subscribe(
+		this._http.get('/users/'+ this.currentUser.data._id+'/things').subscribe(
 			(res)=>{
 				if (res.json().error_code == 0){
 					const things = res.json().data;

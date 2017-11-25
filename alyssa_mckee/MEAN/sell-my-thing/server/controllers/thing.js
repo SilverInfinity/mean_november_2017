@@ -46,7 +46,8 @@ module.exports={
 			console.log("upload the pic")
 			console.log("file",req.file)
 			console.log("body?", req.body);
-			console.log(req.file)
+			console.log("images?",req.body.image);
+			console.log("files?",req.file)
 			if (upload_err){
 				console.log("lost the pic")
 				return res.json({error_code: 1, err_desc: upload_err});				

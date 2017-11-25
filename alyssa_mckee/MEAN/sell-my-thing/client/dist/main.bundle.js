@@ -557,7 +557,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/thing/create-thing/create-thing.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"newThing\">\n\t<form (submit)='onCreate($event); create.resetForm()' #create = 'ngForm'  enctype=\"multipart/form-data\">\n\t\t\n\t\t<label for=\"image\">Image:</label>\n\t\t<input type=\"file\" \n\t\tname=\"image\"\n\t\tid=\"photo\"\n\t\t[(ngModel)] = 'newThing.image'\n\t\t/>\n\t\t<br/>\n\t\t\n\t\t<label for=\"title\">Title:</label>\n\t\t<input type=\"text\"\n\t\tname=\"title\"\n\t\trequired\n\t\t[(ngModel)]='newThing.title'\n\t\t#title='ngModel'\n\t\t/>\n\t\t<small [hidden]='title.valid'>Title is required</small>\n\t\t<br/>\n\t\t\n\t\t<label for=\"description\">Description: </label>\n\t\t<textarea \n\t\tname=\"description\" \n\t\tcols=\"30\" \n\t\trows=\"10\"\n\t\trequired\n\t\t[(ngModel)]='newThing.description'\n\t\t#description = 'ngModel'\n\t\t></textarea>\n\t\t<small [hidden]='description.valid'>{{description.errors | json}}</small>\n\t\t<br/>\n\t\t\n\t\t<label for=\"location\">Location</label>\n\t\t<input type=\"text\"\n\t\tname=\"location\"\n\t\t[(ngModel)]='newThing.location'\n\t\t#location='ngModel'/>\n\t\t<small [hidden]='location.valid'>Location is required</small>\n\t\t<br/>\n\t\t\n\t\t<label for=\"price\">Price: </label>\n\t\t<input type=\"number\"\n\t\tname=\"price\"\n\t\tmin='1'\n\t\tstep='.01'\n\t\t[(ngModel)]='newThing.price'\n\t\t#price = 'ngModel'\n\t\t/>\n\t\t<small [hidden]='price.valid'>{{price.errors | json}}</small>\n\t\t<br/>\n\t\t<button type=\"submit\" [disabled]='! create.valid'>Create Listing</button>\n\t</form>\n</div>\n"
+module.exports = "<div id=\"newThing\">\n\t<form (submit)='onCreate($event); create.resetForm()' #create = 'ngForm'  enctype=\"multipart/form-data\">\n\t\t\n\t\t<label for=\"image\">Image:</label>\n\t\t<input type=\"file\" \n\t\tname=\"image\"\n\t\tid=\"photo\"\n\t\t(change)=\"setFile($event)\"\n\t\t[(ngModel)] = 'newThing.image'\n\t\t/>\n\t\t<br/>\n\t\t\n\t\t<label for=\"title\">Title:</label>\n\t\t<input type=\"text\"\n\t\tname=\"title\"\n\t\trequired\n\t\t[(ngModel)]='newThing.title'\n\t\t#title='ngModel'\n\t\t/>\n\t\t<small [hidden]='title.valid'>Title is required</small>\n\t\t<br/>\n\t\t\n\t\t<label for=\"description\">Description: </label>\n\t\t<textarea \n\t\tname=\"description\" \n\t\tcols=\"30\" \n\t\trows=\"10\"\n\t\trequired\n\t\t[(ngModel)]='newThing.description'\n\t\t#description = 'ngModel'\n\t\t></textarea>\n\t\t<small [hidden]='description.valid'>{{description.errors | json}}</small>\n\t\t<br/>\n\t\t\n\t\t<label for=\"location\">Location</label>\n\t\t<input type=\"text\"\n\t\tname=\"location\"\n\t\t[(ngModel)]='newThing.location'\n\t\t#location='ngModel'/>\n\t\t<small [hidden]='location.valid'>Location is required</small>\n\t\t<br/>\n\t\t\n\t\t<label for=\"price\">Price: </label>\n\t\t<input type=\"number\"\n\t\tname=\"price\"\n\t\tmin='1'\n\t\tstep='.01'\n\t\t[(ngModel)]='newThing.price'\n\t\t#price = 'ngModel'\n\t\t/>\n\t\t<small [hidden]='price.valid'>{{price.errors | json}}</small>\n\t\t<br/>\n\t\t<button type=\"submit\" [disabled]='! create.valid'>Create Listing</button>\n\t</form>\n</div>\n"
 
 /***/ }),
 
@@ -601,13 +601,18 @@ var CreateThingComponent = (function () {
         console.log("oncreate");
         event.preventDefault();
         console.log(this.newThing);
-        console.log("thingoooo", this.newThing.image);
-        console.log(typeof this.newThing.image);
+        console.log("newThing.image?", this.newThing.image);
+        console.log("_files", this._files[0]);
+        this.newThing.image = this._files[0];
+        console.log(this.newThing.image);
         //call thing service make a thingo
         this._thingServ.createThing(this.newThing, function (thing) {
             _this._userServ.currentUser.data.things.push(thing);
         }, console.log);
         this.newThing = {};
+    };
+    CreateThingComponent.prototype.setFile = function (event) {
+        this._files = event.srcElement.files;
     };
     CreateThingComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -1270,7 +1275,7 @@ var UserService = (function () {
         }, eb);
     };
     UserService.prototype.getThings = function (cb, eb) {
-        this._http.get('/users/' + this.currentUser.data._id + 'things').subscribe(function (res) {
+        this._http.get('/users/' + this.currentUser.data._id + '/things').subscribe(function (res) {
             if (res.json().error_code == 0) {
                 var things = res.json().data;
                 cb(things);

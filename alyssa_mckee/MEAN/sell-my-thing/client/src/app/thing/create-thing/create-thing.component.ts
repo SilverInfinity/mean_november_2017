@@ -20,7 +20,7 @@ import "rxjs/add/operator/map";
 })
 export class CreateThingComponent implements OnInit {
 	newThing;
-	
+	_files;
 	constructor(
 		private _thingServ :ThingService,
 		private _userServ :UserService
@@ -36,8 +36,12 @@ export class CreateThingComponent implements OnInit {
 		console.log("oncreate")
 		event.preventDefault();
 		console.log(this.newThing)
-		console.log("thingoooo", this.newThing.image)
-		console.log(typeof this.newThing.image);
+		console.log("newThing.image?", this.newThing.image);
+		console.log("_files", this._files[0]);
+		this.newThing.image = this._files[0];
+		
+		console.log(this.newThing.image);
+		
 		
 		//call thing service make a thingo
 		this._thingServ.createThing(this.newThing,
@@ -47,6 +51,9 @@ export class CreateThingComponent implements OnInit {
 			console.log
 		)
 		this.newThing = {};
+	}
+	private setFile(event) {
+		this._files = event.srcElement.files;
 	}
 	/* v-this is from a tutorial I found. it twrows errors on line 59
 	upload(event) {
