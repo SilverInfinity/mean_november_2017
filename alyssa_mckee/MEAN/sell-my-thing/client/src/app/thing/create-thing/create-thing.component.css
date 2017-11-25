@@ -1,0 +1,25 @@
+label{
+	width: 100px;
+	margin-bottom: 10px;
+	display: inline-block;
+}
+small{
+	color: red;
+}
+#newThing{
+	width: 400px;
+	padding: 10px;
+	border: solid 1px black;
+}
+#newThing h3{
+	background: DodgerBlue;
+	color: white;
+	font-size: 24px;
+	text-align: center;
+	padding: 3px 0px;
+	margin-top: 0;
+}
+#newThing form button{
+	width: 50%;
+	margin: 10px 25%;
+}

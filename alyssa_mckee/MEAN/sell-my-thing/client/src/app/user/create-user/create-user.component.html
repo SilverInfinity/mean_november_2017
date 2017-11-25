@@ -1,0 +1,47 @@
+<div class="registration">
+	<h3>Register an Account</h3>
+	<form #form='ngForm' (submit)='onSubmit($event); createuser.resetForm()' #createuser='ngForm'>
+		<label for="name">Name: </label>
+		<input 
+			type="text"
+			name="name"
+			required
+			[(ngModel)]='user.name'
+			#name='ngModel'/>
+		<small [hidden]='name.valid'>{{ name.errors | json}}</small>
+		<br/>
+		
+		<label for="email">Email: </label>
+		<input 
+			type="email"
+			name="email"
+			required
+			[(ngModel)]='user.email'
+			#email='ngModel'/>
+		<small [hidden]='email.valid'>{{ email.errors | json}}</small>
+		<br/>
+		
+		<label for="name">Password: </label>
+		<input 
+			type="password"
+			name="password"
+			required
+			
+			[(ngModel)]='user.password'
+			#password='ngModel'/>
+		<small [hidden]='password.valid'>{{ password.errors | json}}</small>
+		<br/>
+		
+		<label for="name">Password Confirm: </label>
+		<input 
+			type="password"
+			name="password_confirmation"
+			required
+			[(ngModel)]='user.password_confirmation'
+			#password_confirmation='ngModel'/>
+		<small [hidden]='password_confirmation.valid'>{{ password_confirmation.errors | json}}</small>
+		<small *ngIf='user.password != user.password_confirmation'>Passwords do not match</small>
+		<br/>
+		<button type="submit" [disabled]='! createuser.valid'>Register</button>
+	</form>
+</div>

@@ -1,0 +1,27 @@
+label{
+	width: 100px;
+	margin-bottom: 10px;
+	display: inline-block;
+}
+small{
+	color: red;
+}
+.login{
+	width: 400px;
+	padding: 10px;
+	border: solid 1px black;
+}
+.login h3{
+	background: DodgerBlue;
+	color: white;
+	font-size: 24px;
+	text-align: center;
+	padding: 3px 0px;
+	margin-top: 0;
+}
+.login form button{
+	width: 50%;
+	margin: 10px 25%;
+}
+.login form input{
+}

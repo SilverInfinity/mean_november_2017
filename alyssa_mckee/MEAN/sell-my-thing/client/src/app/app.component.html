@@ -1,0 +1,16 @@
+<h1>Sell Your Stuff</h1>
+<nav>
+<p>
+<span *ngIf='currentUser.data' >You are logged in as {{currentUser.data.name}}</span>
+<span *ngIf='!currentUser.data' >You are not logged in</span>
+<a [routerLink]='[""]'>Landing</a>
+
+|
+<a [routerLink]='["listings"]'>My Listings</a>
+|
+<a [routerLink]='["browse"]'>Browse</a>
+|
+<app-logout *ngIf='currentUser.data' ></app-logout>
+</p>
+</nav>
+<router-outlet></router-outlet>
