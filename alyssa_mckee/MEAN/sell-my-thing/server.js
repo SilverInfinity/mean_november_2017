@@ -10,9 +10,10 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 	}));
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use('/uploads',express.static(path.resolve('./client/uploads')));
 
 app.use(express.static(path.join(__dirname, "./client/dist")));
 

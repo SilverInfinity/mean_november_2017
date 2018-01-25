@@ -1,0 +1,12 @@
+.listing-img{
+	width: 200px;
+	display: inline-block;
+	vertical-align: top;
+}
+.listing-info{
+	display: inline-block;
+	vertical-align: top;
+}
+#search form{
+	display: inline-block;
+}

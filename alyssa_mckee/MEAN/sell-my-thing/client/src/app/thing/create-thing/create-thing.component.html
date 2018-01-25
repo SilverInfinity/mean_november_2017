@@ -1,13 +1,15 @@
-<div id="newThing">
-	<form (submit)='onCreate($event); create.resetForm()' #create = 'ngForm'  enctype="multipart/form-data">
+
+<button (click)='toggle()'>{{buttonText}}</button>
+<div id="newThing" [hidden]='hideComponent'>
+	<form (submit)='upload($event)' #create = 'ngForm'  enctype="multipart/form-data">
 		
 		<label for="image">Image:</label>
 		<input type="file" 
 		name="image"
-		id="photo"
-		(change)="setFile($event)"
+		(change)='setFile($event)'
 		[(ngModel)] = 'newThing.image'
 		/>
+		<small [hidden]='validfile'>Image is required</small>
 		<br/>
 		
 		<label for="title">Title:</label>
@@ -50,6 +52,6 @@
 		/>
 		<small [hidden]='price.valid'>{{price.errors | json}}</small>
 		<br/>
-		<button type="submit" [disabled]='! create.valid'>Create Listing</button>
+		<button type="submit" [disabled]='! create.valid || ! validfile'>Create Listing</button>
 	</form>
 </div>

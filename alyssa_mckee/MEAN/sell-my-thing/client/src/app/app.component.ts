@@ -16,11 +16,11 @@ export class AppComponent implements OnInit {
 	){ this.currentUser = {data: undefined}; }
 	
 	ngOnInit(){
-		this._userServ.getCurrentUser((user)=>{this.currentUser = user}, console.log);
-		if (!this.currentUser.data){
-			this._route.navigateByUrl("/");
-		}
+		this._userServ.getCurrentUser((user)=>{this.currentUser = user
+			if (!this.currentUser.data){
+				this._route.navigateByUrl("/");
+			}
+		}, console.log);
 		this._thingServ.getAllThings(console.log,console.log);
-		
 	}
 }

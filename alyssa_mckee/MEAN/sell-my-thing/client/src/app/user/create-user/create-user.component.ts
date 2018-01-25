@@ -9,6 +9,7 @@ import { UserService } from '../user.service';
 })
 export class CreateUserComponent implements OnInit {
 	user :User;
+	message :string;
 	constructor(
 		private _userServ: UserService,
 		private _route :Router
@@ -16,18 +17,21 @@ export class CreateUserComponent implements OnInit {
 
 	ngOnInit() {
 		this.user = new User();
+		this.message = "";
 	}
 	
 	onSubmit(event){
 		event.preventDefault();
-		
+		this.message = "";
 		this._userServ.createUser(this.user, 
 			(user_id)=>{
 				//go to /listings
 				this._route.navigateByUrl('/browse');
 			},
-			(err)=>{
+			(res)=>{
+				const err = res.json()
 				//display errors
+				this.message = err.err_desc.message;
 				console.log('wat?');
 				console.log(err);
 			}

@@ -80,7 +80,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Sell Your Stuff</h1>\n<nav>\n<p>\n<span *ngIf='currentUser.data' >You are logged in as {{currentUser.data.name}}</span>\n<span *ngIf='!currentUser.data' >You are not logged in</span>\n<a [routerLink]='[\"\"]'>Landing</a>\n\n|\n<a [routerLink]='[\"listings\"]'>My Listings</a>\n|\n<a [routerLink]='[\"browse\"]'>Browse</a>\n|\n<app-logout *ngIf='currentUser.data' ></app-logout>\n</p>\n</nav>\n<router-outlet></router-outlet>\n"
+module.exports = "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">\n<div class=\"container\">\n\t<div class=\"navbar navbar-default\">\n\t\t<nav>\n\t\t\t<p class=\"navbar-brand\">Sell Your Stuff</p>\n\t\t\t<p class=\"navbar-brand\">\n\t\t\t\t<span *ngIf='currentUser.data' >You are logged in as {{currentUser.data.name}}</span>\n\t\t\t\t<span *ngIf='!currentUser.data' >You are not logged in</span>\n\t\t\t</p>\n\t\t\t<ul class=\"nav navbar-nav\">\n\t\t\t\t<li><a [routerLink]='[\"\"]'>Landing</a></li>\n\t\t\t\t<li><a [routerLink]='[\"listings\"]'>My Listings</a></li>\n\t\t\t\t<li><a [routerLink]='[\"browse\"]'>Browse</a></li>\n\t\t\t\t<li><app-logout *ngIf='currentUser.data' ></app-logout></li>\n\t\t\t</ul>\n\t\t</nav>\n\t</div>\n\t<router-outlet></router-outlet>\n\t<script src=\"https://code.jquery.com/jquery-3.1.1.min.js\" integrity=\"sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=\" crossorigin=\"anonymous\"></script>\n  <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script>\n</div>\n"
 
 /***/ }),
 
@@ -115,10 +115,12 @@ var AppComponent = (function () {
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._userServ.getCurrentUser(function (user) { _this.currentUser = user; }, console.log);
-        if (!this.currentUser.data) {
-            this._route.navigateByUrl("/");
-        }
+        this._userServ.getCurrentUser(function (user) {
+            _this.currentUser = user;
+            if (!_this.currentUser.data) {
+                _this._route.navigateByUrl("/");
+            }
+        }, console.log);
         this._thingServ.getAllThings(console.log, console.log);
     };
     AppComponent = __decorate([
@@ -236,7 +238,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "/* app-login{ */\r\n\t/* display: inline-block; */\r\n\t/* vertical-align: top; */\r\n\t/* width: 49vw; */\r\n\t/* margin: 0 auto; */\r\n/* } */\r\n/* app-create-user{ */\r\n\t/* display: inline-block; */\r\n\t/* vertical-align: top; */\r\n\t/* width: 49vw; */\r\n\t/* margin: 0 auto; */\r\n/* } */", ""]);
 
 // exports
 
@@ -249,7 +251,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/landing/landing.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "[[landing]]\n<app-thing-of-the-day></app-thing-of-the-day>\n<app-login></app-login>\n<app-create-user></app-create-user>\n"
+module.exports = "<div class=\"row\">\n\t<div class=\"col-xs-12\">\n\t\t<app-thing-of-the-day></app-thing-of-the-day>\n\t</div>\n</div>\n<div class=\"row\">\n\t<div class=\"col-xs-12 col-sm-6\">\n\t\t<app-create-user></app-create-user>\n\t</div>\n\t<div class=\"col-xs-12 col-sm-6\">\n\t\t<app-login></app-login>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -297,7 +299,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "label{\r\n\twidth: 100px;\r\n\tmargin-bottom: 10px;\r\n\tdisplay: inline-block;\r\n}\r\nsmall{\r\n\tcolor: red;\r\n}\r\n.login{\r\n\twidth: 400px;\r\n\tpadding: 10px;\r\n\tborder: solid 1px black;\r\n}\r\n.login h3{\r\n\tbackground: DodgerBlue;\r\n\tcolor: white;\r\n\tfont-size: 24px;\r\n\ttext-align: center;\r\n\tpadding: 3px 0px;\r\n\tmargin-top: 0;\r\n}\r\n.login form button{\r\n\twidth: 50%;\r\n\tmargin: 10px 25%;\r\n}\r\n.login form input{\r\n}", ""]);
+exports.push([module.i, "label{\r\n\twidth: 100px;\r\n\tmargin-bottom: 10px;\r\n\tdisplay: inline-block;\r\n}\r\nsmall{\r\n\tcolor: red;\r\n}\r\nsmall.message{\r\n\tdisplay: block;\r\n\ttext-align: center;\r\n}\r\n.login{\r\n\twidth: 80%;\r\n/*\tmin-width: 300px;\r\n\tmax-width: 600px;\t*/\r\n\tmargin: 0 auto;\r\n\tpadding: 10px;\r\n\tborder: solid 1px black;\r\n}\r\n.login h3{\r\n\tbackground: DodgerBlue;\r\n\tcolor: white;\r\n\tfont-size: 24px;\r\n\ttext-align: center;\r\n\tpadding: 3px 0px;\r\n\tmargin-top: 0px;\r\n}\r\n.login form button{\r\n\twidth: 50%;\r\n\tmargin: 10px 25%;\r\n}\r\n.login form input{\r\n}", ""]);
 
 // exports
 
@@ -310,7 +312,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/session/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"login\">\n\t<h3>Login Account</h3>\n\t<form #form='ngForm' (submit)='onSubmit($event); createuser.resetForm()' #createuser='ngForm'>\n\t\t<label for=\"email\">Email: </label>\n\t\t<input \n\t\t\ttype=\"email\"\n\t\t\tname=\"email\"\n\t\t\trequired\n\t\t\t[(ngModel)]='user.email'\n\t\t\t#email='ngModel'/>\n\t\t<small [hidden]='email.valid'>{{ email.errors | json}}</small>\n\t\t<br/>\n\t\t\n\t\t<label for=\"name\">Password: </label>\n\t\t<input \n\t\t\ttype=\"password\"\n\t\t\tname=\"password\"\n\t\t\trequired\n\t\t\t\n\t\t\t[(ngModel)]='user.password'\n\t\t\t#password='ngModel'/>\n\t\t<small [hidden]='password.valid'>{{ password.errors | json}}</small>\n\t\t<br/>\n\t\t\n\t\t<button type=\"submit\" [disabled]='! createuser.valid'>Login</button>\n\t</form>\n</div>"
+module.exports = "<div class=\"panel panel-info\">\n\t<div class=\"panel-heading\">\n\t\t<h3 class=\"panel-title\">Login Account</h3>\n\t</div>\n\t<div class=\"panel-body\">\n\t\t<form #form='ngForm' (submit)='onSubmit($event); createuser.resetForm()' #createuser='ngForm'>\n\t\t\t\n\t\t\t<small [hidden]='message == \"\"' class=\"message\">{{message}}</small>\n\t\t\t<label for=\"email\">Email: </label>\n\t\t\t<input \n\t\t\t\ttype=\"email\"\n\t\t\t\tname=\"email\"\n\t\t\t\trequired\n\t\t\t\t[(ngModel)]='user.email'\n\t\t\t\t#email='ngModel'/>\n\t\t\t<small [hidden]='email.valid'>{{ email.errors | json}}</small>\n\t\t\t<br/>\n\t\t\t\n\t\t\t<label for=\"name\">Password: </label>\n\t\t\t<input \n\t\t\t\ttype=\"password\"\n\t\t\t\tname=\"password\"\n\t\t\t\t[(ngModel)]='user.password'\n\t\t\t\t#password='ngModel'/>\n\t\t\t<small [hidden]='password.valid'>{{ password.errors | json}}</small>\n\t\t\t<br/>\n\t\t\t\n\t\t\t<button type=\"submit\" [disabled]='! createuser.valid'>Login</button>\n\t\t</form>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -343,15 +345,26 @@ var LoginComponent = (function () {
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.user = new __WEBPACK_IMPORTED_MODULE_1__user_user__["a" /* User */]();
+        this.user.email = "ki@digiworld.net";
+        this.user.password = "password";
+        this.message = "";
+        console.log("login init");
     };
     LoginComponent.prototype.onSubmit = function (event) {
         var _this = this;
         event.preventDefault();
+        console.log("onSubmit");
+        this.message = "";
         this._userServ.login(this.user, function (res) {
-            //redirect
+            console.log("success");
+            _this.user = new __WEBPACK_IMPORTED_MODULE_1__user_user__["a" /* User */]();
             _this._route.navigateByUrl("/browse");
-        }, console.log);
-        this.user = new __WEBPACK_IMPORTED_MODULE_1__user_user__["a" /* User */]();
+        }, function (res) {
+            console.log("error");
+            var err = res.json();
+            _this.message = err.err_desc.message;
+            console.log(_this.user);
+        });
     };
     LoginComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -377,7 +390,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "button{\r\n\tmargin-top: 7px;\r\n}", ""]);
 
 // exports
 
@@ -390,7 +403,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/session/logout/logout.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<button (click)=\"logout()\">Logout</button>"
+module.exports = "<button class=\"btn btn-default\" (click)=\"logout()\">Logout</button>"
 
 /***/ }),
 
@@ -557,7 +570,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/thing/create-thing/create-thing.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"newThing\">\n\t<form (submit)='onCreate($event); create.resetForm()' #create = 'ngForm'  enctype=\"multipart/form-data\">\n\t\t\n\t\t<label for=\"image\">Image:</label>\n\t\t<input type=\"file\" \n\t\tname=\"image\"\n\t\tid=\"photo\"\n\t\t(change)=\"setFile($event)\"\n\t\t[(ngModel)] = 'newThing.image'\n\t\t/>\n\t\t<br/>\n\t\t\n\t\t<label for=\"title\">Title:</label>\n\t\t<input type=\"text\"\n\t\tname=\"title\"\n\t\trequired\n\t\t[(ngModel)]='newThing.title'\n\t\t#title='ngModel'\n\t\t/>\n\t\t<small [hidden]='title.valid'>Title is required</small>\n\t\t<br/>\n\t\t\n\t\t<label for=\"description\">Description: </label>\n\t\t<textarea \n\t\tname=\"description\" \n\t\tcols=\"30\" \n\t\trows=\"10\"\n\t\trequired\n\t\t[(ngModel)]='newThing.description'\n\t\t#description = 'ngModel'\n\t\t></textarea>\n\t\t<small [hidden]='description.valid'>{{description.errors | json}}</small>\n\t\t<br/>\n\t\t\n\t\t<label for=\"location\">Location</label>\n\t\t<input type=\"text\"\n\t\tname=\"location\"\n\t\t[(ngModel)]='newThing.location'\n\t\t#location='ngModel'/>\n\t\t<small [hidden]='location.valid'>Location is required</small>\n\t\t<br/>\n\t\t\n\t\t<label for=\"price\">Price: </label>\n\t\t<input type=\"number\"\n\t\tname=\"price\"\n\t\tmin='1'\n\t\tstep='.01'\n\t\t[(ngModel)]='newThing.price'\n\t\t#price = 'ngModel'\n\t\t/>\n\t\t<small [hidden]='price.valid'>{{price.errors | json}}</small>\n\t\t<br/>\n\t\t<button type=\"submit\" [disabled]='! create.valid'>Create Listing</button>\n\t</form>\n</div>\n"
+module.exports = "\n<button (click)='toggle()'>{{buttonText}}</button>\n<div id=\"newThing\" [hidden]='hideComponent'>\n\t<form (submit)='upload($event)' #create = 'ngForm'  enctype=\"multipart/form-data\">\n\t\t\n\t\t<label for=\"image\">Image:</label>\n\t\t<input type=\"file\" \n\t\tname=\"image\"\n\t\t(change)='setFile($event)'\n\t\t[(ngModel)] = 'newThing.image'\n\t\t/>\n\t\t<small [hidden]='validfile'>Image is required</small>\n\t\t<br/>\n\t\t\n\t\t<label for=\"title\">Title:</label>\n\t\t<input type=\"text\"\n\t\tname=\"title\"\n\t\trequired\n\t\t[(ngModel)]='newThing.title'\n\t\t#title='ngModel'\n\t\t/>\n\t\t<small [hidden]='title.valid'>Title is required</small>\n\t\t<br/>\n\t\t\n\t\t<label for=\"description\">Description: </label>\n\t\t<textarea \n\t\tname=\"description\" \n\t\tcols=\"30\" \n\t\trows=\"10\"\n\t\trequired\n\t\t[(ngModel)]='newThing.description'\n\t\t#description = 'ngModel'\n\t\t></textarea>\n\t\t<small [hidden]='description.valid'>{{description.errors | json}}</small>\n\t\t<br/>\n\t\t\n\t\t<label for=\"location\">Location</label>\n\t\t<input type=\"text\"\n\t\tname=\"location\"\n\t\t[(ngModel)]='newThing.location'\n\t\t#location='ngModel'/>\n\t\t<small [hidden]='location.valid'>Location is required</small>\n\t\t<br/>\n\t\t\n\t\t<label for=\"price\">Price: </label>\n\t\t<input type=\"number\"\n\t\tname=\"price\"\n\t\tmin='1'\n\t\tstep='.01'\n\t\t[(ngModel)]='newThing.price'\n\t\t#price = 'ngModel'\n\t\t/>\n\t\t<small [hidden]='price.valid'>{{price.errors | json}}</small>\n\t\t<br/>\n\t\t<button type=\"submit\" [disabled]='! create.valid || ! validfile'>Create Listing</button>\n\t</form>\n</div>\n"
 
 /***/ }),
 
@@ -567,10 +580,12 @@ module.exports = "<div id=\"newThing\">\n\t<form (submit)='onCreate($event); cre
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateThingComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_user_service__ = __webpack_require__("../../../../../src/app/user/user.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__thing_service__ = __webpack_require__("../../../../../src/app/thing/thing.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_do__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/do.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__thing__ = __webpack_require__("../../../../../src/app/thing/thing.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_user_service__ = __webpack_require__("../../../../../src/app/user/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__thing_service__ = __webpack_require__("../../../../../src/app/thing/thing.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_do__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/do.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -583,36 +598,48 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var URL = 'http://localhost:8000/things';
 
 //import the map function to be used with the http library
 
 var CreateThingComponent = (function () {
-    function CreateThingComponent(_thingServ, _userServ) {
+    function CreateThingComponent(_route, _thingServ, _userServ) {
+        this._route = _route;
         this._thingServ = _thingServ;
         this._userServ = _userServ;
-        //this.newThing = new Thing();
-        this.newThing = {};
+        this.validfile = false;
+        this.newThing = new __WEBPACK_IMPORTED_MODULE_1__thing__["a" /* Thing */]();
     }
     CreateThingComponent.prototype.ngOnInit = function () {
-    };
-    CreateThingComponent.prototype.onCreate = function (event) {
-        var _this = this;
-        console.log("oncreate");
-        event.preventDefault();
-        console.log(this.newThing);
-        console.log("newThing.image?", this.newThing.image);
-        console.log("_files", this._files[0]);
-        this.newThing.image = this._files[0];
-        console.log(this.newThing.image);
-        //call thing service make a thingo
-        this._thingServ.createThing(this.newThing, function (thing) {
-            _this._userServ.currentUser.data.things.push(thing);
-        }, console.log);
-        this.newThing = {};
+        this.hideComponent = true;
+        this.buttonText = "Create New Listing";
     };
     CreateThingComponent.prototype.setFile = function (event) {
         this._files = event.srcElement.files;
+        this.validfile = true;
+    };
+    CreateThingComponent.prototype.toggle = function () {
+        this.hideComponent = !this.hideComponent;
+        this.buttonText = this.hideComponent ? "Create New Listing" : "Cancel";
+    };
+    CreateThingComponent.prototype.upload = function (event) {
+        var _this = this;
+        event.preventDefault();
+        var fileCount = this._files.length;
+        var formData = new FormData();
+        if (fileCount > 0) {
+            formData.append('title', this.newThing.title);
+            formData.append('description', this.newThing.description);
+            formData.append('location', this.newThing.location);
+            formData.append('price', this.newThing.price.toFixed(2));
+            formData.append('image', this._files[0]);
+            this._thingServ.createThing(formData, function (res) {
+                console.log("success", res);
+                _this._route.navigateByUrl("/browse");
+            }, console.log);
+        }
     };
     CreateThingComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -620,8 +647,9 @@ var CreateThingComponent = (function () {
             template: __webpack_require__("../../../../../src/app/thing/create-thing/create-thing.component.html"),
             styles: [__webpack_require__("../../../../../src/app/thing/create-thing/create-thing.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__thing_service__["a" /* ThingService */],
-            __WEBPACK_IMPORTED_MODULE_1__user_user_service__["a" /* UserService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_3__thing_service__["a" /* ThingService */],
+            __WEBPACK_IMPORTED_MODULE_2__user_user_service__["a" /* UserService */]])
     ], CreateThingComponent);
     return CreateThingComponent;
 }());
@@ -638,7 +666,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".listing-img{\r\n\twidth: 200px;\r\n\tdisplay: inline-block;\r\n\tvertical-align: top;\r\n}\r\n.listing-info{\r\n\tdisplay: inline-block;\r\n\tvertical-align: top;\r\n}", ""]);
 
 // exports
 
@@ -651,7 +679,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/thing/edit-thing/edit-thing.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  [ngfor loop all the users things with forms for editing]\n</p>\n"
+module.exports = "<div *ngFor='let thing of things'>\n<div class=\"thing\">\n\t<img class=\"listing-img\" src=\"/uploads/{{thing.image}}\" alt=\"picture of {{thing.title}}\"/>\n\t<div class=\"listing-info\">\n\t\t<h3>{{thing.title}}</h3>\n\t\t<p>{{thing.description}}</p>\n\t\t<p>{{thing.location}}</p>\n\t\t<p>${{thing.price}}</p>\n\t</div>\n\t\n\t<hr/>\n</div>  \n</div>\n"
 
 /***/ }),
 
@@ -713,7 +741,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".listing-img{\r\n\twidth: 200px;\r\n\tdisplay: inline-block;\r\n\tvertical-align: top;\r\n}\r\n.listing-info{\r\n\tdisplay: inline-block;\r\n\tvertical-align: top;\r\n}\r\n#search form{\r\n\tdisplay: inline-block;\r\n}", ""]);
 
 // exports
 
@@ -726,7 +754,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/thing/list-thing/list-thing.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  list-thing works!\n</p>\n[search]\n\n<div id=\"listing-container\">\n\t<div class=\"thing\" *ngFor='let thing of things'>\n<pre>\n --------      {{thing.title}}\n[   mm   ]     \n[   \\/   ]     {{thing.description}}\n[  o |   ]\n[   \\|/  ]     {{thing.location}}    ${{thing.price}}\n --------\n</pre>\n\t</div>\n\n\n</div>"
+module.exports = "<div id=\"search\">\n\t<form (submit)='search($event)' #searchForm='ngForm'>\n\t\t<label>Search:</label>\n\t\t<input \n\t\t\tid=\"search\"\n\t\t\ttype=\"text\"\n\t\t\tname=\"search\"\n\t\t\trequired\n\t\t\t[(ngModel)]='searchQuery'\n\t\t/>\n\t\t<button [disabled]='!searchForm.valid'>Search</button>\n\t</form>\n\t<button [disabled]='!filter' (click)='reset()'>Reset</button>\n</div>\n<p *ngIf='filter'>results filtered by: {{filter}}</p>\n<div id=\"listing-container\">\n\t<div class=\"thing\" *ngFor='let thing of things.data'>\n\t<div *ngIf='!filter || (thing.title.toLowerCase().includes(filter) ||thing.description.toLowerCase().includes(filter) || thing.location.toLowerCase().includes(filter) || thing.price.includes(filter))'>\n\t\t<img class=\"listing-img\" src=\"/uploads/{{thing.image}}\" alt=\"picture of {{thing.title}}\"/>\n\t\t<div class=\"listing-info\">\n\t\t\t<h3>{{thing.title}}</h3>\n\t\t\t<p>{{thing.description}}</p>\n\t\t\t<p>{{thing.location}}</p>\n\t\t\t<p>${{thing.price}}</p>\n\t\t\t<p>Seller: {{thing.user.name}}</p>\n\t\t</div>\n\t\t\n\t\t<hr/>\n\t</div>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -757,11 +785,26 @@ var ListThingComponent = (function () {
         this._router = _router;
         this._userServ = _userServ;
         this._thingServ = _thingServ;
-        this.things = [];
+        this.things = {
+            data: []
+        };
+        this.filter = "";
+        this.searchQuery = "";
     }
     ListThingComponent.prototype.ngOnInit = function () {
         this.currentUser = this._userServ.currentUser;
+        if (!this.currentUser.data) {
+            this._router.navigateByUrl("/");
+        }
         this.things = this._thingServ.things;
+    };
+    ListThingComponent.prototype.search = function (event) {
+        event.preventDefault();
+        this.filter = this.searchQuery.toLowerCase();
+        this.searchQuery = "";
+    };
+    ListThingComponent.prototype.reset = function () {
+        this.filter = "";
     };
     ListThingComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -788,7 +831,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".listing-img{\r\n\twidth: 50%;\r\n\tmax-width: 200px;\r\n\tdisplay: inline-block;\r\n\tvertical-align: top;\r\n}\r\n.listing-info{\r\n\tdisplay: inline-block;\r\n\tvertical-align: top;\r\n}\r\n.thing{\r\n    box-shadow: 0px 0px 10px 10px dodgerblue;\r\n}\r\n.thing h2{\r\n    text-align: center;\r\n}\r\n.panel-heading{\r\n\tbackground-color: dodgerblue !important;\r\n}\r\n.panel{\r\n\tborder-color: dodgerblue;\r\n}", ""]);
 
 // exports
 
@@ -801,7 +844,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/thing/thing-of-the-day/thing-of-the-day.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  [thing-of-the-day]\n</p>\n"
+module.exports = "<div class=\"thing panel panel-primary\">\n\t<div class=\"panel-heading\">\n\t\t<h2 class=\"panel-title\">Thing of the day!</h2>\n\t</div>\n\t<div class=\"panel-body\">\n\t\t<img class=\"listing-img\" src=\"/uploads/{{thing.image}}\" alt=\"picture of {{thing.title}}\"/>\n\t\t<div class=\"listing-info\">\n\t\t\t<h3>{{thing.title}}</h3>\n\t\t\t<p>{{thing.description}}</p>\n\t\t\t<p>{{thing.location}}</p>\n\t\t\t<p>${{thing.price}}</p>\n\t\t</div>\n\t</div>\n</div>  "
 
 /***/ }),
 
@@ -811,6 +854,8 @@ module.exports = "<p>\n  [thing-of-the-day]\n</p>\n"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ThingOfTheDayComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__thing_service__ = __webpack_require__("../../../../../src/app/thing/thing.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__thing__ = __webpack_require__("../../../../../src/app/thing/thing.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -821,10 +866,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var ThingOfTheDayComponent = (function () {
-    function ThingOfTheDayComponent() {
+    function ThingOfTheDayComponent(_thingServ) {
+        this._thingServ = _thingServ;
     }
     ThingOfTheDayComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.thing = new __WEBPACK_IMPORTED_MODULE_2__thing__["a" /* Thing */]();
+        this._thingServ.getAllThings(function (res) {
+            var things = res.data;
+            _this.thing = things[Math.floor(Math.random() * things.length)];
+        }, console.log);
     };
     ThingOfTheDayComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -832,7 +886,7 @@ var ThingOfTheDayComponent = (function () {
             template: __webpack_require__("../../../../../src/app/thing/thing-of-the-day/thing-of-the-day.component.html"),
             styles: [__webpack_require__("../../../../../src/app/thing/thing-of-the-day/thing-of-the-day.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__thing_service__["a" /* ThingService */]])
     ], ThingOfTheDayComponent);
     return ThingOfTheDayComponent;
 }());
@@ -909,6 +963,7 @@ var ThingComponent = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ThingService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_user_service__ = __webpack_require__("../../../../../src/app/user/user.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -920,15 +975,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var ThingService = (function () {
-    function ThingService(_http) {
+    function ThingService(_http, _userServ) {
         this._http = _http;
+        this._userServ = _userServ;
+        this.things = {
+            data: []
+        };
     }
     ThingService.prototype.getAllThings = function (cb, eb) {
         var _this = this;
         this._http.get('/things').subscribe(function (res) {
             if (res.json().error_code == 0) {
-                _this.things = res.json().data;
+                _this.things.data = res.json().data;
                 console.log("things", _this.things);
                 cb(_this.things);
             }
@@ -944,8 +1004,9 @@ var ThingService = (function () {
             console.log("resp");
             if (res.json().error_code == 0) {
                 var thing_1 = res.json().data;
-                _this.things.push(thing_1);
-                cb(thing_1);
+                thing_1.user = _this._userServ.currentUser.data;
+                _this.things.data.push(thing_1);
+                cb(_this.things);
             }
             else {
                 eb(res);
@@ -954,7 +1015,8 @@ var ThingService = (function () {
     };
     ThingService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */],
+            __WEBPACK_IMPORTED_MODULE_2__user_user_service__["a" /* UserService */]])
     ], ThingService);
     return ThingService;
 }());
@@ -992,7 +1054,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "label{\r\n\twidth: 100px;\r\n\tmargin-bottom: 10px;\r\n\tdisplay: inline-block;\r\n}\r\nsmall{\r\n\tcolor: red;\r\n}\r\n.registration{\r\n\twidth: 400px;\r\n\tpadding: 10px;\r\n\tborder: solid 1px black;\r\n}\r\n.registration h3{\r\n\tbackground: DodgerBlue;\r\n\tcolor: white;\r\n\tfont-size: 24px;\r\n\ttext-align: center;\r\n\tpadding: 3px 0px;\r\n\tmargin-top: 0;\r\n}\r\n.registration form button{\r\n\twidth: 50%;\r\n\tmargin: 10px 25%;\r\n}\r\n.registration form input{\r\n}", ""]);
+exports.push([module.i, "label{\r\n\twidth: 100px;\r\n\tmargin-bottom: 10px;\r\n\tdisplay: inline-block;\r\n}\r\nsmall{\r\n\tcolor: red;\r\n}\r\nsmall.message{\r\n\tdisplay: block;\r\n\ttext-align: center;\r\n}\r\n.registration{\r\n\twidth: 80%;\r\n/*\tmin-width: 300px;\r\n\tmax-width: 600px;\t*/\r\n\tmargin: 0 auto;\r\n\tpadding: 10px;\r\n\tborder: solid 1px black;\r\n}\r\n.registration h3{\r\n\tbackground: DodgerBlue;\r\n\tcolor: white;\r\n\tfont-size: 24px;\r\n\ttext-align: center;\r\n\tpadding: 3px 0px;\r\n\tmargin-top: 0;\r\n}\r\n.registration form button{\r\n\twidth: 50%;\r\n\tmargin: 10px 25%;\r\n}\r\n.registration form input{\r\n}", ""]);
 
 // exports
 
@@ -1005,7 +1067,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/user/create-user/create-user.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"registration\">\n\t<h3>Register an Account</h3>\n\t<form #form='ngForm' (submit)='onSubmit($event); createuser.resetForm()' #createuser='ngForm'>\n\t\t<label for=\"name\">Name: </label>\n\t\t<input \n\t\t\ttype=\"text\"\n\t\t\tname=\"name\"\n\t\t\trequired\n\t\t\t[(ngModel)]='user.name'\n\t\t\t#name='ngModel'/>\n\t\t<small [hidden]='name.valid'>{{ name.errors | json}}</small>\n\t\t<br/>\n\t\t\n\t\t<label for=\"email\">Email: </label>\n\t\t<input \n\t\t\ttype=\"email\"\n\t\t\tname=\"email\"\n\t\t\trequired\n\t\t\t[(ngModel)]='user.email'\n\t\t\t#email='ngModel'/>\n\t\t<small [hidden]='email.valid'>{{ email.errors | json}}</small>\n\t\t<br/>\n\t\t\n\t\t<label for=\"name\">Password: </label>\n\t\t<input \n\t\t\ttype=\"password\"\n\t\t\tname=\"password\"\n\t\t\trequired\n\t\t\t\n\t\t\t[(ngModel)]='user.password'\n\t\t\t#password='ngModel'/>\n\t\t<small [hidden]='password.valid'>{{ password.errors | json}}</small>\n\t\t<br/>\n\t\t\n\t\t<label for=\"name\">Password Confirm: </label>\n\t\t<input \n\t\t\ttype=\"password\"\n\t\t\tname=\"password_confirmation\"\n\t\t\trequired\n\t\t\t[(ngModel)]='user.password_confirmation'\n\t\t\t#password_confirmation='ngModel'/>\n\t\t<small [hidden]='password_confirmation.valid'>{{ password_confirmation.errors | json}}</small>\n\t\t<small *ngIf='user.password != user.password_confirmation'>Passwords do not match</small>\n\t\t<br/>\n\t\t<button type=\"submit\" [disabled]='! createuser.valid'>Register</button>\n\t</form>\n</div>"
+module.exports = "<div class=\"panel panel-info\">\n\t<div class=\"panel-heading\">\n\t\t<h3 class=\"panel-title\">Register an Account</h3>\n\t</div>\n\t<div class=\"panel-body\">\n\t\t<form #form='ngForm' (submit)='onSubmit($event); createuser.resetForm()' #createuser='ngForm'>\n\t\t\t<small class=\"message\" [hidden]='message == \"\"'>{{ message }}</small>\n\t\t\t<label for=\"name\">Name: </label>\n\t\t\t<input \n\t\t\t\ttype=\"text\"\n\t\t\t\tname=\"name\"\n\t\t\t\trequired\n\t\t\t\t[(ngModel)]='user.name'\n\t\t\t\t#name='ngModel'/>\n\t\t\t<small [hidden]='name.valid'>{{ name.errors | json}}</small>\n\t\t\t<br/>\n\t\t\t\n\t\t\t<label for=\"email\">Email: </label>\n\t\t\t<input \n\t\t\t\ttype=\"email\"\n\t\t\t\tname=\"email\"\n\t\t\t\trequired\n\t\t\t\t[(ngModel)]='user.email'\n\t\t\t\t#email='ngModel'/>\n\t\t\t<small [hidden]='email.valid'>{{ email.errors | json}}</small>\n\t\t\t<br/>\n\t\t\t\n\t\t\t<label for=\"name\">Password: </label>\n\t\t\t<input \n\t\t\t\ttype=\"password\"\n\t\t\t\tname=\"password\"\n\t\t\t\trequired\n\t\t\t\t\n\t\t\t\t[(ngModel)]='user.password'\n\t\t\t\t#password='ngModel'/>\n\t\t\t<small [hidden]='password.valid'>{{ password.errors | json}}</small>\n\t\t\t<br/>\n\t\t\t\n\t\t\t<label for=\"name\">Password Confirm: </label>\n\t\t\t<input \n\t\t\t\ttype=\"password\"\n\t\t\t\tname=\"password_confirmation\"\n\t\t\t\trequired\n\t\t\t\t[(ngModel)]='user.password_confirmation'\n\t\t\t\t#password_confirmation='ngModel'/>\n\t\t\t<small [hidden]='password_confirmation.valid'>{{ password_confirmation.errors | json}}</small>\n\t\t\t<small *ngIf='user.password != user.password_confirmation'>Passwords do not match</small>\n\t\t\t<br/>\n\t\t\t<button type=\"submit\" [disabled]='! createuser.valid'>Register</button>\n\t\t</form>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -1038,15 +1100,19 @@ var CreateUserComponent = (function () {
     }
     CreateUserComponent.prototype.ngOnInit = function () {
         this.user = new __WEBPACK_IMPORTED_MODULE_2__user__["a" /* User */]();
+        this.message = "";
     };
     CreateUserComponent.prototype.onSubmit = function (event) {
         var _this = this;
         event.preventDefault();
+        this.message = "";
         this._userServ.createUser(this.user, function (user_id) {
             //go to /listings
             _this._route.navigateByUrl('/browse');
-        }, function (err) {
+        }, function (res) {
+            var err = res.json();
             //display errors
+            _this.message = err.err_desc.message;
             console.log('wat?');
             console.log(err);
         });
@@ -1089,7 +1155,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/user/show-user/show-user.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  [[show-user]]\n  <app-create-thing></app-create-thing>\n  <app-edit-thing></app-edit-thing>\n</p>\n"
+module.exports = "<app-create-thing></app-create-thing>\n<app-edit-thing></app-edit-thing>\n"
 
 /***/ }),
 
@@ -1099,6 +1165,8 @@ module.exports = "<p>\n  [[show-user]]\n  <app-create-thing></app-create-thing>\
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ShowUserComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_service__ = __webpack_require__("../../../../../src/app/user/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1109,10 +1177,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var ShowUserComponent = (function () {
-    function ShowUserComponent() {
+    function ShowUserComponent(_userServ, _route) {
+        this._userServ = _userServ;
+        this._route = _route;
     }
     ShowUserComponent.prototype.ngOnInit = function () {
+        if (!this._userServ.currentUser.data) {
+            this._route.navigateByUrl("/");
+        }
     };
     ShowUserComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -1120,7 +1195,8 @@ var ShowUserComponent = (function () {
             template: __webpack_require__("../../../../../src/app/user/show-user/show-user.component.html"),
             styles: [__webpack_require__("../../../../../src/app/user/show-user/show-user.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__user_service__["a" /* UserService */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */]])
     ], ShowUserComponent);
     return ShowUserComponent;
 }());

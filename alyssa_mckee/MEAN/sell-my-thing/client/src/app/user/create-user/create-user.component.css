@@ -6,8 +6,15 @@ label{
 small{
 	color: red;
 }
+small.message{
+	display: block;
+	text-align: center;
+}
 .registration{
-	width: 400px;
+	width: 80%;
+/*	min-width: 300px;
+	max-width: 600px;	*/
+	margin: 0 auto;
 	padding: 10px;
 	border: solid 1px black;
 }

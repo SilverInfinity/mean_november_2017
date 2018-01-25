@@ -1,3 +1,14 @@
-<p>
-  [thing-of-the-day]
-</p>
+<div class="thing panel panel-primary">
+	<div class="panel-heading">
+		<h2 class="panel-title">Thing of the day!</h2>
+	</div>
+	<div class="panel-body">
+		<img class="listing-img" src="/uploads/{{thing.image}}" alt="picture of {{thing.title}}"/>
+		<div class="listing-info">
+			<h3>{{thing.title}}</h3>
+			<p>{{thing.description}}</p>
+			<p>{{thing.location}}</p>
+			<p>${{thing.price}}</p>
+		</div>
+	</div>
+</div>  

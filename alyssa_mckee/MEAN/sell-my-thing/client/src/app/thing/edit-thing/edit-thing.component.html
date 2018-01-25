@@ -1,3 +1,13 @@
-<p>
-  [ngfor loop all the users things with forms for editing]
-</p>
+<div *ngFor='let thing of things'>
+<div class="thing">
+	<img class="listing-img" src="/uploads/{{thing.image}}" alt="picture of {{thing.title}}"/>
+	<div class="listing-info">
+		<h3>{{thing.title}}</h3>
+		<p>{{thing.description}}</p>
+		<p>{{thing.location}}</p>
+		<p>${{thing.price}}</p>
+	</div>
+	
+	<hr/>
+</div>  
+</div>

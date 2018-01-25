@@ -1,16 +1,21 @@
-<h1>Sell Your Stuff</h1>
-<nav>
-<p>
-<span *ngIf='currentUser.data' >You are logged in as {{currentUser.data.name}}</span>
-<span *ngIf='!currentUser.data' >You are not logged in</span>
-<a [routerLink]='[""]'>Landing</a>
-
-|
-<a [routerLink]='["listings"]'>My Listings</a>
-|
-<a [routerLink]='["browse"]'>Browse</a>
-|
-<app-logout *ngIf='currentUser.data' ></app-logout>
-</p>
-</nav>
-<router-outlet></router-outlet>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<div class="container">
+	<div class="navbar navbar-default">
+		<nav>
+			<p class="navbar-brand">Sell Your Stuff</p>
+			<p class="navbar-brand">
+				<span *ngIf='currentUser.data' >You are logged in as {{currentUser.data.name}}</span>
+				<span *ngIf='!currentUser.data' >You are not logged in</span>
+			</p>
+			<ul class="nav navbar-nav">
+				<li><a [routerLink]='[""]'>Landing</a></li>
+				<li><a [routerLink]='["listings"]'>My Listings</a></li>
+				<li><a [routerLink]='["browse"]'>Browse</a></li>
+				<li><app-logout *ngIf='currentUser.data' ></app-logout></li>
+			</ul>
+		</nav>
+	</div>
+	<router-outlet></router-outlet>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</div>

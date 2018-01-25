@@ -3,7 +3,7 @@ var fs = require('fs');
 var multer = require('multer');
 var storage = multer.diskStorage({
 	destination: function (req,file,callback){
-		callback(null,'./client/dist/uploads/');
+		callback(null,'./client/uploads/');
 	},
 	filename: function (req,file,callback) {
 		var datetimestamp = Date.now();
@@ -19,7 +19,7 @@ var Users = require('../models/users');
 var Things = require('../models/things');
 
 function deleteUpload(filename){
-	fs.unlink('./client/dist/uploads/'+filename);
+	fs.unlink('./client/uploads/'+filename);
 	
 }
 
@@ -52,12 +52,13 @@ module.exports={
 				console.log("lost the pic")
 				return res.json({error_code: 1, err_desc: upload_err});				
 			}
-			//Users.findOne({_id: req.session.user_id})
-			Users.findOne({_id: req.body.user},(user_err, user)=>{
+			Users.findOne({_id: req.session.user_id}, (user_err, user)=>{
+			//Users.findOne({_id: req.body.user},(user_err, user)=>{
 				console.log("finding the user");
-				if (user_err){
+				console.log("user?", user);
+				if (user_err || !user){
 					console.log("lost the user");
-					fs.unlink('./client/dist/uploads/'+req.file.filename);
+					fs.unlink('./client/uploads/'+req.file.filename);
 					return res.json({error_code: 2, err_desc: user_err});				
 				}
 				console.log("create the thing");
@@ -66,33 +67,33 @@ module.exports={
 				thing.description = req.body.description
 				thing.price = req.body.price
 				thing.location = req.body.location
-				//thing.user = req.session.user_id
-				thing.user = req.body.user
+				thing.user = req.session.user_id
+				//thing.user = req.body.user
 				thing.image = req.file.filename;
 				thing.save((save_err)=>{
 					console.log("save the thing");
 					if (save_err){
 						console.log("lost the thing");
-						fs.unlink('./client/dist/uploads/'+req.file.filename);
+						fs.unlink('./client/uploads/'+req.file.filename);
 						return res.json({error_code: 3, err_desc: save_err});				
 					}
 					user.things.push(thing);
 					
 					Users.update({_id: user._id},user,(user_update_err)=>{
 						if (user_update_err){
-							fs.unlink('./client/dist/uploads/'+req.file.filename);
+							fs.unlink('./client/uploads/'+req.file.filename);
 							return res.json({error_code: 4, err_desc: user_update_err});				
 						}
-						
+					
 						console.log(req.file);
-						return res.json({error_code: 0, err_desc:null, data:{file:req.file, id: thing._id}});
+						return res.json({error_code: 0, err_desc:null, data:thing});
 					})
 				})	
 			})	
 		})
 	},
 	all: (req,res)=>{
-		Things.find({},(err, things)=>{
+		Things.find({}).populate('user').exec((err, things)=>{
 			if (err){
 				return res.json({error_code: 1, err_desc: err});				
 			}
@@ -130,6 +131,14 @@ module.exports={
 			})
 		})
 	},
+	findByUser:(req,res)=>{
+		Users.findOne({_id: req.params.id}, '-password').populate('things').exec((err,user)=>{
+			if (err){
+				return res.json({error_code: 1, error: err});
+			}
+			return res.json({error_code: 0, error: null, data: user.things})
+		});
+	}
 	
 	
 }

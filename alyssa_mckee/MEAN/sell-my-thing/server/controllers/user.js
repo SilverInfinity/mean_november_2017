@@ -36,13 +36,5 @@ module.exports = {
 			
 			return res.json({error_code: 0, error: null, data: user})
 		});
-	},
-	findWithThings: (req, res)=>{
-		Users.findOne({_id: req.params.id}, '-password').populate('things').exec((err,user)=>{
-			if (err){
-				return res.json({error_code: 1, error: err});
-			}
-			return res.json({error_code: 0, error: null, data: user})
-		});
 	}
 }

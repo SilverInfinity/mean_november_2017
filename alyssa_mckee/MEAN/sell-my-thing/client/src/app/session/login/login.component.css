@@ -6,8 +6,15 @@ label{
 small{
 	color: red;
 }
+small.message{
+	display: block;
+	text-align: center;
+}
 .login{
-	width: 400px;
+	width: 80%;
+/*	min-width: 300px;
+	max-width: 600px;	*/
+	margin: 0 auto;
 	padding: 10px;
 	border: solid 1px black;
 }
@@ -17,7 +24,7 @@ small{
 	font-size: 24px;
 	text-align: center;
 	padding: 3px 0px;
-	margin-top: 0;
+	margin-top: 0px;
 }
 .login form button{
 	width: 50%;

@@ -1,19 +1,31 @@
-<p>
-  list-thing works!
-</p>
-[search]
-
+<div id="search">
+	<form (submit)='search($event)' #searchForm='ngForm'>
+		<label>Search:</label>
+		<input 
+			id="search"
+			type="text"
+			name="search"
+			required
+			[(ngModel)]='searchQuery'
+		/>
+		<button [disabled]='!searchForm.valid'>Search</button>
+	</form>
+	<button [disabled]='!filter' (click)='reset()'>Reset</button>
+</div>
+<p *ngIf='filter'>results filtered by: {{filter}}</p>
 <div id="listing-container">
-	<div class="thing" *ngFor='let thing of things'>
-<pre>
- --------      {{thing.title}}
-[   mm   ]     
-[   \/   ]     {{thing.description}}
-[  o |   ]
-[   \|/  ]     {{thing.location}}    ${{thing.price}}
- --------
-</pre>
+	<div class="thing" *ngFor='let thing of things.data'>
+	<div *ngIf='!filter || (thing.title.toLowerCase().includes(filter) ||thing.description.toLowerCase().includes(filter) || thing.location.toLowerCase().includes(filter) || thing.price.includes(filter))'>
+		<img class="listing-img" src="/uploads/{{thing.image}}" alt="picture of {{thing.title}}"/>
+		<div class="listing-info">
+			<h3>{{thing.title}}</h3>
+			<p>{{thing.description}}</p>
+			<p>{{thing.location}}</p>
+			<p>${{thing.price}}</p>
+			<p>Seller: {{thing.user.name}}</p>
+		</div>
+		
+		<hr/>
 	</div>
-
-
+	</div>
 </div>

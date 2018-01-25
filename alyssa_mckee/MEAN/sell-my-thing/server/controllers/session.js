@@ -26,7 +26,7 @@ module.exports = {
 			return res.json({error_code:2, err_desc: {message: "password can not be empty"}});
 		}
 
-		req.body.email = req.body.email.toLowerCase();
+		//req.body.email = req.body.email.toLowerCase();
 		Users.findOne({email: req.body.email}, (err,user) =>{			
 			if (!user){
 				
@@ -40,7 +40,7 @@ module.exports = {
 					//	REMOVE PW FROM USER BEFORE RETURNING
 					//
 					delete user.password;
-					
+					//ITS NOT WORKING?
 				return res.json({error_code:0, err_desc: null, data: user});
 			})
 			.catch((x) => {

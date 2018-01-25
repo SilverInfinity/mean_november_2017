@@ -17,7 +17,7 @@ module.exports = function(app){
 	app.get('/users', User.all);
 	app.post('/users',User.create);		//create user
 	app.get('/users/:id',User.findOne);	//get user
-	app.get('/users/:id/things', User.findWithThings);
+	app.get('/users/:id/things', Thing.findByUser);
 	//Things
 	app.post('/uploads', Thing.upload);	//upload image?
 	app.post('/things', Thing.create);	//create thing
@@ -31,3 +31,5 @@ module.exports = function(app){
 		res.sendFile(path.resolve("./client/dist/index.html"))
 	});
 }
+
+
