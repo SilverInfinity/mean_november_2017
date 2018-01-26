@@ -10,3 +10,14 @@
 #search form{
 	display: inline-block;
 }
+#search{
+	background: #d9edf7;
+	padding: 20px 10px;
+}
+#reset-filter{
+	margin-left: 20px;
+}
+.contact{
+	background: limegreen;
+	height: 100%;
+}

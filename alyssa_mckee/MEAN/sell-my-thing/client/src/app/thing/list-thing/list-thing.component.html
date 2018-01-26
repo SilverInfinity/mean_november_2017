@@ -1,31 +1,63 @@
-<div id="search">
-	<form (submit)='search($event)' #searchForm='ngForm'>
-		<label>Search:</label>
-		<input 
-			id="search"
-			type="text"
-			name="search"
-			required
-			[(ngModel)]='searchQuery'
-		/>
-		<button [disabled]='!searchForm.valid'>Search</button>
-	</form>
-	<button [disabled]='!filter' (click)='reset()'>Reset</button>
-</div>
-<p *ngIf='filter'>results filtered by: {{filter}}</p>
-<div id="listing-container">
-	<div class="thing" *ngFor='let thing of things.data'>
-	<div *ngIf='!filter || (thing.title.toLowerCase().includes(filter) ||thing.description.toLowerCase().includes(filter) || thing.location.toLowerCase().includes(filter) || thing.price.includes(filter))'>
-		<img class="listing-img" src="/uploads/{{thing.image}}" alt="picture of {{thing.title}}"/>
-		<div class="listing-info">
-			<h3>{{thing.title}}</h3>
-			<p>{{thing.description}}</p>
-			<p>{{thing.location}}</p>
-			<p>${{thing.price}}</p>
-			<p>Seller: {{thing.user.name}}</p>
-		</div>
-		
-		<hr/>
+<div class="col-xs-12 col-sm-3">
+	<div class="panel" id="search">
+		<form (submit)='search($event)' #searchForm='ngForm'>
+			<label>Search:</label>
+			<input 
+				class="form-controller"
+				type="text"
+				name="search"
+				required
+				[(ngModel)]='searchQuery'
+			/>
+			<button *ngIf='searchForm.valid' [disabled]='!searchForm.valid'>Search</button>
+		</form>
 	</div>
+</div>
+<div class="col-xs-12 col-sm-9">
+	<div class="row">
+		<p *ngIf='filter'>results filtered by: {{filter}}
+			<button id="reset-filter" class="btn btn-xs btn-warning" [disabled]='!filter' (click)='reset()'>Reset</button>
+		</p>
+	</div>
+	<div class="row">
+			<div id="listing-container">
+				<div class="thing" *ngFor='let thing of things.data'>
+					<div class="row">
+					<div *ngIf='!filter || (thing.title.toLowerCase().includes(filter) ||thing.description.toLowerCase().includes(filter) || thing.location.toLowerCase().includes(filter) || thing.price.includes(filter))'>
+						<div *ngIf='thing._id != contacting' class="listing col-xs-12">
+							<img class="listing-img" src="/uploads/{{thing.image}}" alt="picture of {{thing.title}}"/>
+							<div class="listing-info">
+								<h3>{{thing.title}}</h3>
+								<p>{{thing.description}}</p>
+								<p>{{thing.location}}</p>
+								<p>${{thing.price}}</p>
+								<p>Seller: {{thing.user.name}}</p>
+								<button *ngIf='thing.user._id != currentUser._id' (click)='showContactFor(thing)'>Contact Seller</button>
+							</div>
+							
+							<hr/>
+						</div>
+						<div *ngIf='thing._id == contacting' class="listing col-xs-12">
+							<img class="listing-img" src="/uploads/{{thing.image}}" alt="picture of {{thing.title}}"/>
+							<div class="listing-info">
+								<h3>{{thing.title}}</h3>
+								<p>{{thing.description}}</p>
+								<p>{{thing.location}}</p>
+								<p>${{thing.price}}</p>
+								<p>Seller: {{thing.user.name}}</p>
+								<button *ngIf='thing.user._id != currentUser._id' (click)='showContactFor(thing)'>Contact Seller</button>
+							</div>
+							
+						</div>
+						<div class="contact col-xs-12" *ngIf='thing._id == contacting'>
+							<p>Name: {{thing.user.name}}</p>
+							<p>Email: <a href="mailto:{{thing.user.email}}">{{thing.user.email}}</a></p>
+							<p>(link to user profile?)</p>
+						</div>
+						<hr/>
+					</div>
+					</div>
+				</div>
+		</div>
 	</div>
 </div>

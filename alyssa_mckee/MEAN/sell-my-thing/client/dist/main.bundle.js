@@ -80,7 +80,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">\n<div class=\"container\">\n\t<div class=\"navbar navbar-default\">\n\t\t<nav>\n\t\t\t<p class=\"navbar-brand\">Sell Your Stuff</p>\n\t\t\t<p class=\"navbar-brand\">\n\t\t\t\t<span *ngIf='currentUser.data' >You are logged in as {{currentUser.data.name}}</span>\n\t\t\t\t<span *ngIf='!currentUser.data' >You are not logged in</span>\n\t\t\t</p>\n\t\t\t<ul class=\"nav navbar-nav\">\n\t\t\t\t<li><a [routerLink]='[\"\"]'>Landing</a></li>\n\t\t\t\t<li><a [routerLink]='[\"listings\"]'>My Listings</a></li>\n\t\t\t\t<li><a [routerLink]='[\"browse\"]'>Browse</a></li>\n\t\t\t\t<li><app-logout *ngIf='currentUser.data' ></app-logout></li>\n\t\t\t</ul>\n\t\t</nav>\n\t</div>\n\t<router-outlet></router-outlet>\n\t<script src=\"https://code.jquery.com/jquery-3.1.1.min.js\" integrity=\"sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=\" crossorigin=\"anonymous\"></script>\n  <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script>\n</div>\n"
+module.exports = "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">\n<div class=\"container\">\n\t<div class=\"row\">\n\t\t<div class=\"navbar navbar-default\">\n\t\t\t<nav>\n\t\t\t\t<p class=\"navbar-brand\">Sell Your Stuff</p>\n\t\t\t\t<p class=\"navbar-brand\">\n\t\t\t\t\t<span *ngIf='currentUser.data' >You are logged in as {{currentUser.data.name}}</span>\n\t\t\t\t\t<span *ngIf='!currentUser.data' >You are not logged in</span>\n\t\t\t\t</p>\n\t\t\t\t<ul class=\"nav navbar-nav\">\n\t\t\t\t\t<li><a [routerLink]='[\"\"]'>Landing</a></li>\n\t\t\t\t\t<li><a [routerLink]='[\"listings\"]'>My Listings</a></li>\n\t\t\t\t\t<li><a [routerLink]='[\"browse\"]'>Browse</a></li>\n\t\t\t\t\t<li><app-logout *ngIf='currentUser.data' ></app-logout></li>\n\t\t\t\t</ul>\n\t\t\t</nav>\n\t\t</div>\n\t</div>\n\t<div class=\"row\">\n\t\t<router-outlet></router-outlet>\n\t</div>\n\t<script src=\"https://code.jquery.com/jquery-3.1.1.min.js\" integrity=\"sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=\" crossorigin=\"anonymous\"></script>\n  <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script>\n</div>\n"
 
 /***/ }),
 
@@ -741,7 +741,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".listing-img{\r\n\twidth: 200px;\r\n\tdisplay: inline-block;\r\n\tvertical-align: top;\r\n}\r\n.listing-info{\r\n\tdisplay: inline-block;\r\n\tvertical-align: top;\r\n}\r\n#search form{\r\n\tdisplay: inline-block;\r\n}", ""]);
+exports.push([module.i, ".listing-img{\r\n\twidth: 200px;\r\n\tdisplay: inline-block;\r\n\tvertical-align: top;\r\n}\r\n.listing-info{\r\n\tdisplay: inline-block;\r\n\tvertical-align: top;\r\n}\r\n#search form{\r\n\tdisplay: inline-block;\r\n}\r\n#search{\r\n\tbackground: #d9edf7;\r\n\tpadding: 20px 10px;\r\n}\r\n#reset-filter{\r\n\tmargin-left: 20px;\r\n}\r\n.contact{\r\n\tbackground: limegreen;\r\n\theight: 100%;\r\n}", ""]);
 
 // exports
 
@@ -754,7 +754,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/thing/list-thing/list-thing.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"search\">\n\t<form (submit)='search($event)' #searchForm='ngForm'>\n\t\t<label>Search:</label>\n\t\t<input \n\t\t\tid=\"search\"\n\t\t\ttype=\"text\"\n\t\t\tname=\"search\"\n\t\t\trequired\n\t\t\t[(ngModel)]='searchQuery'\n\t\t/>\n\t\t<button [disabled]='!searchForm.valid'>Search</button>\n\t</form>\n\t<button [disabled]='!filter' (click)='reset()'>Reset</button>\n</div>\n<p *ngIf='filter'>results filtered by: {{filter}}</p>\n<div id=\"listing-container\">\n\t<div class=\"thing\" *ngFor='let thing of things.data'>\n\t<div *ngIf='!filter || (thing.title.toLowerCase().includes(filter) ||thing.description.toLowerCase().includes(filter) || thing.location.toLowerCase().includes(filter) || thing.price.includes(filter))'>\n\t\t<img class=\"listing-img\" src=\"/uploads/{{thing.image}}\" alt=\"picture of {{thing.title}}\"/>\n\t\t<div class=\"listing-info\">\n\t\t\t<h3>{{thing.title}}</h3>\n\t\t\t<p>{{thing.description}}</p>\n\t\t\t<p>{{thing.location}}</p>\n\t\t\t<p>${{thing.price}}</p>\n\t\t\t<p>Seller: {{thing.user.name}}</p>\n\t\t</div>\n\t\t\n\t\t<hr/>\n\t</div>\n\t</div>\n</div>"
+module.exports = "<div class=\"col-xs-12 col-sm-3\">\n\t<div class=\"panel\" id=\"search\">\n\t\t<form (submit)='search($event)' #searchForm='ngForm'>\n\t\t\t<label>Search:</label>\n\t\t\t<input \n\t\t\t\tclass=\"form-controller\"\n\t\t\t\ttype=\"text\"\n\t\t\t\tname=\"search\"\n\t\t\t\trequired\n\t\t\t\t[(ngModel)]='searchQuery'\n\t\t\t/>\n\t\t\t<button *ngIf='searchForm.valid' [disabled]='!searchForm.valid'>Search</button>\n\t\t</form>\n\t</div>\n</div>\n<div class=\"col-xs-12 col-sm-9\">\n\t<div class=\"row\">\n\t\t<p *ngIf='filter'>results filtered by: {{filter}}\n\t\t\t<button id=\"reset-filter\" class=\"btn btn-xs btn-warning\" [disabled]='!filter' (click)='reset()'>Reset</button>\n\t\t</p>\n\t</div>\n\t<div class=\"row\">\n\t\t\t<div id=\"listing-container\">\n\t\t\t\t<div class=\"thing\" *ngFor='let thing of things.data'>\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<div *ngIf='!filter || (thing.title.toLowerCase().includes(filter) ||thing.description.toLowerCase().includes(filter) || thing.location.toLowerCase().includes(filter) || thing.price.includes(filter))'>\n\t\t\t\t\t\t<div *ngIf='thing._id != contacting' class=\"listing col-xs-12\">\n\t\t\t\t\t\t\t<img class=\"listing-img\" src=\"/uploads/{{thing.image}}\" alt=\"picture of {{thing.title}}\"/>\n\t\t\t\t\t\t\t<div class=\"listing-info\">\n\t\t\t\t\t\t\t\t<h3>{{thing.title}}</h3>\n\t\t\t\t\t\t\t\t<p>{{thing.description}}</p>\n\t\t\t\t\t\t\t\t<p>{{thing.location}}</p>\n\t\t\t\t\t\t\t\t<p>${{thing.price}}</p>\n\t\t\t\t\t\t\t\t<p>Seller: {{thing.user.name}}</p>\n\t\t\t\t\t\t\t\t<button *ngIf='thing.user._id != currentUser._id' (click)='showContactFor(thing)'>Contact Seller</button>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<hr/>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div *ngIf='thing._id == contacting' class=\"listing col-xs-12\">\n\t\t\t\t\t\t\t<img class=\"listing-img\" src=\"/uploads/{{thing.image}}\" alt=\"picture of {{thing.title}}\"/>\n\t\t\t\t\t\t\t<div class=\"listing-info\">\n\t\t\t\t\t\t\t\t<h3>{{thing.title}}</h3>\n\t\t\t\t\t\t\t\t<p>{{thing.description}}</p>\n\t\t\t\t\t\t\t\t<p>{{thing.location}}</p>\n\t\t\t\t\t\t\t\t<p>${{thing.price}}</p>\n\t\t\t\t\t\t\t\t<p>Seller: {{thing.user.name}}</p>\n\t\t\t\t\t\t\t\t<button *ngIf='thing.user._id != currentUser._id' (click)='showContactFor(thing)'>Contact Seller</button>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"contact col-xs-12\" *ngIf='thing._id == contacting'>\n\t\t\t\t\t\t\t<p>Name: {{thing.user.name}}</p>\n\t\t\t\t\t\t\t<p>Email: <a href=\"mailto:{{thing.user.email}}\">{{thing.user.email}}</a></p>\n\t\t\t\t\t\t\t<p>(link to user profile?)</p>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<hr/>\n\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>"
 
 /***/ }),
 
@@ -790,6 +790,7 @@ var ListThingComponent = (function () {
         };
         this.filter = "";
         this.searchQuery = "";
+        this.contacting = "";
     }
     ListThingComponent.prototype.ngOnInit = function () {
         this.currentUser = this._userServ.currentUser;
@@ -797,6 +798,7 @@ var ListThingComponent = (function () {
             this._router.navigateByUrl("/");
         }
         this.things = this._thingServ.things;
+        this.contacting = "";
     };
     ListThingComponent.prototype.search = function (event) {
         event.preventDefault();
@@ -805,6 +807,12 @@ var ListThingComponent = (function () {
     };
     ListThingComponent.prototype.reset = function () {
         this.filter = "";
+    };
+    ListThingComponent.prototype.showContactFor = function (thing) {
+        if (this.contacting == thing._id)
+            this.contacting = "";
+        else
+            this.contacting = thing._id;
     };
     ListThingComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({

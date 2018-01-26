@@ -14,6 +14,7 @@ export class ListThingComponent implements OnInit {
 	things;
 	filter;
 	searchQuery;
+	contacting;
 	constructor(
 		private _router :Router,
 		private _userServ :UserService,
@@ -24,6 +25,7 @@ export class ListThingComponent implements OnInit {
 		};
 		this.filter = "";
 		this.searchQuery = "";
+		this.contacting = "";
 	}
 
 	ngOnInit() {
@@ -32,6 +34,7 @@ export class ListThingComponent implements OnInit {
 			this._router.navigateByUrl("/");
 		}
 		this.things = this._thingServ.things;
+		this.contacting = "";
 	}
 	
 	search(event){
@@ -42,5 +45,11 @@ export class ListThingComponent implements OnInit {
 	
 	reset(){
 		this.filter = "";
+	}
+	showContactFor(thing){
+		if (this.contacting == thing._id)
+			this.contacting = "";
+		else
+			this.contacting = thing._id;
 	}
 }
